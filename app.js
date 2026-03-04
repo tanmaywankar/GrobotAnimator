@@ -7,9 +7,9 @@ const state = {
 };
 
 const mood = {
-  topH: 10,
-  botH: 1,
-  tilt: 60,
+  topH: 0,
+  botH: 0,
+  tilt: 0,
   pR: 30,
   eR: 45,
 };
@@ -88,3 +88,37 @@ function lookAt(x, y) {
 
   renderEmotions();
 }
+
+document.getElementById('lookX').addEventListener('input', (e) => {
+  lookAt(parseInt(e.target.value), state.canvasY);
+});
+
+document.getElementById('lookY').addEventListener('input', (e) => {
+  lookAt(state.canvasX, parseInt(e.target.value));
+});
+
+
+document.getElementById('topH').addEventListener('input', (e) => {
+  mood.topH = parseInt(e.target.value);
+  renderEmotions();
+});
+
+document.getElementById('botH').addEventListener('input', (e) => {
+  mood.botH = -(parseInt(e.target.value));
+  renderEmotions();
+});
+
+document.getElementById('tilt').addEventListener('input', (e) => {
+  mood.tilt = parseInt(e.target.value);
+  renderEmotions();
+});
+
+document.getElementById('eR').addEventListener('input', (e) => {
+  mood.eR = (parseInt(e.target.value));
+  renderEmotions();
+});
+
+document.getElementById('pR').addEventListener('input', (e) => {
+  mood.pR = parseInt(e.target.value);
+  renderEmotions();
+});

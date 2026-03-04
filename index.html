@@ -16,9 +16,45 @@
   </head>
   <body>
     <div class="content">
-      <div class="slider_container"></div>
+      <div class="slider_container">
+        <div class="slider_values">
+          <label
+            >Look X:
+            <input type="range" id="lookX" min="-40" max="40" value="0"
+          /></label>
+          <label
+            >Look Y:
+            <input type="range" id="lookY" min="-60" max="60" value="0"
+          /></label>
+          <label
+            >top eyelid :
+            <input type="range" id="topH" min="0" max="50" value="0"
+          /></label>
+          <label
+            >bottom eyelid:
+            <input type="range" id="botH" min="0" max="50" value="0"
+          /></label>
+          <label
+            >Tilt:
+            <input type="range" id="tilt" min="-60" max="60" value="0"
+          /></label>
+           <label
+            >eye Radius:
+            <input type="range" id="eR" min="0" max = "50" value="45"
+          /></label>
+           <label
+            >pupil radius:
+            <input type="range" id="pR" min="0" max="60" value="30"
+          /></label>
+        </div>
+      </div>
       <div class="canvas_container">
-        <canvas class="grobot_eyes shadow" width="320" height="240" id="canvas"></canvas>
+        <canvas
+          class="grobot_eyes shadow"
+          width="320"
+          height="240"
+          id="canvas"
+        ></canvas>
       </div>
     </div>
     <!--  script file  -->
