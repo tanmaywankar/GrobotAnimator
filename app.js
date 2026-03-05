@@ -1,12 +1,11 @@
 const state = {
-  eyeRadius: 45,
   eyeGap: 20,
   eY: 60,
   canvasX: 0,
   canvasY: 0,
 };
 
-const mood = {
+let moodL = {
   topH: 0,
   botH: 0,
   tilt: 0,
@@ -14,9 +13,18 @@ const mood = {
   eR: 45,
 };
 
-let eyeOffset = mood.eR + state.eyeGap;
+let moodR = {
+  topH: 0,
+  botH: 0,
+  tilt: 0,
+  pR: 30,
+  eR: 45,
+};
+
+let eyeOffset = moodL.eR + state.eyeGap;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+let textbox = document.getElementById('codeOutput');
 
 function renderEmotions() {
   //for filling black color every new frame
@@ -31,8 +39,29 @@ function renderEmotions() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, 320, 120);
 
-  drawEye(state.eY, mood.eR, mood.pR, mood.topH, mood.botH, mood.tilt, false);
-  drawEye(state.eY, mood.eR, mood.pR, mood.topH, mood.botH, mood.tilt, true);
+
+  drawEye(
+    state.eY,
+    moodR.eR,
+    moodR.pR,
+    moodR.topH,
+    moodR.botH,
+    moodR.tilt,
+    false,
+  );
+  drawEye(
+    state.eY,
+    moodL.eR,
+    moodL.pR,
+    moodL.topH,
+    moodL.botH,
+    moodL.tilt,
+    true,
+  );
+
+  textbox.value = `const MoodData MOODL = {${moodL.topH}, ${moodL.botH}, ${moodL.tilt}, ${moodL.pR}, ${moodL.eR}};\nconst MoodData MOODR = {${moodR.topH}, ${moodR.botH}, ${moodR.tilt}, ${moodR.pR}, ${moodR.eR}};\nlookAt(${state.canvasX},${state.canvasY});
+  `;
+
 }
 renderEmotions();
 
@@ -56,69 +85,81 @@ function drawEye(eY, eR, pR, lidH, botH, tilt, isLeft) {
 
   ctx.beginPath();
   ctx.fillStyle = "#080707";
-  ctx.fillRect(eyePosition - eR, (eY - eR) - 3, 2 * eR, lidH);
+  ctx.fillRect(eyePosition - eR, eY - eR - 3, 2 * eR, lidH);
 
   ctx.beginPath();
   ctx.fillStyle = "#080707";
-  ctx.fillRect(eyePosition - eR, (eY + eR) + 2, 2 * eR, botH);
+  ctx.fillRect(eyePosition - eR, eY + eR + 2, 2 * eR, botH);
 
   let pointX;
-if (isLeft) {
-    pointX = (tilt < 0) ? (eyePosition - eR) : (eyePosition + eR);
-} else {
-    pointX = (tilt < 0) ? (eyePosition + eR) : (eyePosition - eR);
-}
+  if (isLeft) {
+    pointX = tilt < 0 ? eyePosition - eR : eyePosition + eR;
+  } else {
+    pointX = tilt < 0 ? eyePosition + eR : eyePosition - eR;
+  }
 
-ctx.beginPath();
-ctx.fillStyle = "#080707";
+  ctx.beginPath();
+  ctx.fillStyle = "#080707";
 
-if(tilt !== 0){
-ctx.moveTo(eyePosition - eR, (eY - eR + lidH) - 3); 
-ctx.lineTo(eyePosition + eR, (eY - eR + lidH) - 3); 
-ctx.lineTo(pointX, eY - eR + lidH + Math.abs(tilt)); 
-ctx.closePath();
-ctx.fill();
-}
-
+  if (tilt !== 0) {
+    ctx.moveTo(eyePosition - eR, eY - eR + lidH - 3);
+    ctx.lineTo(eyePosition + eR, eY - eR + lidH - 3);
+    ctx.lineTo(pointX, eY - eR + lidH + Math.abs(tilt));
+    ctx.closePath();
+    ctx.fill();
+  }
 }
 
 function lookAt(x, y) {
   state.canvasX = x;
   state.canvasY = y;
 
-  renderEmotions();
+  renderEmotions("both");
 }
 
-document.getElementById('lookX').addEventListener('input', (e) => {
+document.getElementById("lookX").addEventListener("input", (e) => {
   lookAt(parseInt(e.target.value), state.canvasY);
 });
 
-document.getElementById('lookY').addEventListener('input', (e) => {
+document.getElementById("lookY").addEventListener("input", (e) => {
   lookAt(state.canvasX, parseInt(e.target.value));
 });
 
-
-document.getElementById('topH').addEventListener('input', (e) => {
-  mood.topH = parseInt(e.target.value);
-  renderEmotions();
+document.getElementById("topH").addEventListener("input", (e) => {
+ updateMood("topH", parseInt(e.target.value));
 });
 
-document.getElementById('botH').addEventListener('input', (e) => {
-  mood.botH = -(parseInt(e.target.value));
-  renderEmotions();
+document.getElementById("botH").addEventListener("input", (e) => {
+   updateMood("botH", -parseInt(e.target.value));
 });
 
-document.getElementById('tilt').addEventListener('input', (e) => {
-  mood.tilt = parseInt(e.target.value);
-  renderEmotions();
+document.getElementById("tilt").addEventListener("input", (e) => {
+ updateMood("tilt", parseInt(e.target.value));
+
 });
 
-document.getElementById('eR').addEventListener('input', (e) => {
-  mood.eR = (parseInt(e.target.value));
-  renderEmotions();
+document.getElementById("eR").addEventListener("input", (e) => {
+   updateMood("eR", parseInt(e.target.value));
+
 });
 
-document.getElementById('pR').addEventListener('input', (e) => {
-  mood.pR = parseInt(e.target.value);
-  renderEmotions();
+document.getElementById("pR").addEventListener("input", (e) => {
+   updateMood("pR", parseInt(e.target.value));
+
 });
+
+
+function updateMood(property, value) {
+  const selectedOption = document.querySelector(
+    'input[name="eyeSide"]:checked',
+  );
+  const side = selectedOption.value;
+
+  if (side == "left" || side == "both") {
+    moodL[property] = value;
+  }
+  if (side == "right" || side == "both") {
+    moodR[property] = value;
+  }
+  renderEmotions();
+}
