@@ -29,7 +29,7 @@ let textbox = document.getElementById('codeOutput');
 function renderEmotions() {
   //for filling black color every new frame
   ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.fillStyle = "#111";
+  ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   //for getting sprite canvas i.e the 320 * 120 grid
   let spriteTop = state.eY + state.canvasY;
@@ -59,7 +59,7 @@ function renderEmotions() {
     true,
   );
 
-  textbox.value = `const MoodData MOODL = {${moodL.topH}, ${moodL.botH}, ${moodL.tilt}, ${moodL.pR}, ${moodL.eR}};\nconst MoodData MOODR = {${moodR.topH}, ${moodR.botH}, ${moodR.tilt}, ${moodR.pR}, ${moodR.eR}};\nlookAt(${state.canvasX},${state.canvasY});
+  textbox.value = `const MoodData MOODL = {${moodL.topH}, ${-moodL.botH}, ${moodL.tilt}, ${moodL.pR}, ${moodL.eR}};\nconst MoodData MOODR = {${moodR.topH}, ${-moodR.botH}, ${moodR.tilt}, ${moodR.pR}, ${moodR.eR}};\nlookAt(${state.canvasX},${state.canvasY});
   `;
 
 }
@@ -75,7 +75,7 @@ function drawEye(eY, eR, pR, lidH, botH, tilt, isLeft) {
   }
   ctx.beginPath();
   ctx.arc(eyePosition, eY, eR, 0, Math.PI * 2);
-  ctx.fillStyle = "#94ff00";
+  ctx.fillStyle = "#08FF5A";
   ctx.fill();
 
   ctx.beginPath();
@@ -84,11 +84,11 @@ function drawEye(eY, eR, pR, lidH, botH, tilt, isLeft) {
   ctx.fill();
 
   ctx.beginPath();
-  ctx.fillStyle = "#080707";
+  ctx.fillStyle = "#000000";
   ctx.fillRect(eyePosition - eR, eY - eR - 3, 2 * eR, lidH);
 
   ctx.beginPath();
-  ctx.fillStyle = "#080707";
+  ctx.fillStyle = "#000000";
   ctx.fillRect(eyePosition - eR, eY + eR + 2, 2 * eR, botH);
 
   let pointX;
@@ -99,7 +99,7 @@ function drawEye(eY, eR, pR, lidH, botH, tilt, isLeft) {
   }
 
   ctx.beginPath();
-  ctx.fillStyle = "#080707";
+  ctx.fillStyle = "#000000";
 
   if (tilt !== 0) {
     ctx.moveTo(eyePosition - eR, eY - eR + lidH - 3);

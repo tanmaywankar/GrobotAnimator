@@ -17,6 +17,19 @@
   <body>
     <div class="content">
       <div class="slider_container">
+        <div class="eye-selector">
+          <label
+            ><input type="radio" name="eyeSide" value="both" checked /> Both
+            Eyes</label
+          >
+          <label
+            ><input type="radio" name="eyeSide" value="left" /> Left Only</label
+          >
+          <label
+            ><input type="radio" name="eyeSide" value="right" /> Right
+            Only</label
+          >
+        </div>
         <div class="slider_values">
           <label
             >Look X:
@@ -49,35 +62,19 @@
       </div>
       <div class="canvas_container">
         <canvas
-          class="grobot_eyes shadow"
+          class="grobot_eyes"
           width="320"
           height="240"
           id="canvas"
         ></canvas>
 
         <div class="export-zone">
-          <div class="eye-selector">
-            <label
-              ><input type="radio" name="eyeSide" value="both" checked /> Both
-              Eyes</label
-            >
-            <label
-              ><input type="radio" name="eyeSide" value="left" /> Left
-              Only</label
-            >
-            <label
-              ><input type="radio" name="eyeSide" value="right" /> Right
-              Only</label
-            >
+          <textarea class="input_field" id="codeOutput" rows="5"></textarea>
+          <div class="button_area">
+            <button class="task_button">SEND</button>
+            <button class="task_button">ADD</button>
+            <button class="task_button copy">COPY</button>
           </div>
-
-          <textarea
-          id="codeOutput"
-          rows="5"
-          style="width: 500px; margin-top: 10px; font-family: monospace"
-          ></textarea>
-          <button>Generate C++ Code</button>
-          <br />
         </div>
       </div>
     </div>
