@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Grobot Animator: An interactive platform for animating robot eyes
+    </title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="apple-touch-icon" sizes="180x180" href="src/Icons/fav_icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="src/Icons/fav_icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="src/Icons/fav_icons/favicon-16x16.png">
+<link rel="manifest" href="src/Icons/fav_icons/site.webmanifest">
+  </head>
+  <body>
+    <div class="heading"></div>
+    <div class="content">
+      <div class="slider_container">
+        
+        <div class="slider_content">
+          <div class="eye-selector">
+            <label
+              ><input type="radio"  name="eyeSide" value="left"  />
+              <svg class="normal_icon gb-icon">
+                <use href="src/Icons/sprite.svg#gb-left_eye" />
+              </svg>
+            
+            <label
+              ><input type="radio"  name="eyeSide" value="both" checked />
+              <svg class="normal_icon gb-icon">
+                <use href="src/Icons/sprite.svg#gb-base_emo" />
+              </svg>
+            
+            <label smaller_icon
+              ><input type="radio"  name="eyeSide" value="right" />
+              <svg class="normal_icon gb-icon">
+                <use href="src/Icons/sprite.svg#gb-right_eye" />
+              </svg>
+            
+          </div>
+          <div class="slider_values">
+            <div class="lookX slider_card">
+              <svg class="custom left_btn oppositeX smaller_icon">
+                <use href="src/Icons/sprite.svg#gb-look_left" />
+              </svg>
+              <input type="range" class="slider" id="lookX" min="-48" max="48" value="0" />
+              <svg class="custom smaller_icon">
+                <use href="src/Icons/sprite.svg#gb-look_left" />
+              </svg>
+            </div>
+            <div class="lookY slider_card">
+              <svg class="custom left_btn smaller_icon">
+                <use href="src/Icons/sprite.svg#gb-look_up" />
+              </svg>
+
+              <input type="range" class="slider" id="lookY" min="-60" max="60" value="0" />
+
+              <svg class="custom smaller_icon oppositeY">
+                <use href="src/Icons/sprite.svg#gb-look_up" />
+              </svg>
+            </div>
+            <div class="topH slider_card">
+               <svg class="custom left_btn normal_icon oppositeY">
+                <use href="src/Icons/sprite.svg#gb-base_emo" />
+              </svg>
+              <input type="range" class="slider" id="topH" min="0" max="50" value="0" />
+               <svg class="custom normal_icon oppositeY">
+                <use href="src/Icons/sprite.svg#gb-top_lid" />
+              </svg>
+            </div>
+            <div class="botH slider_card">
+              <svg class="custom left_btn normal_icon oppositeY">
+                <use href="src/Icons/sprite.svg#gb-base_emo" />
+              </svg>
+              <input type="range" class="slider" id="botH" min="0" max="50" value="0" />
+              <svg class="custom normal_icon oppositeY">
+                <use href="src/Icons/sprite.svg#gb-bottom_lid" />
+              </svg>
+            </div>
+            <div class="tilt slider_card">
+              <svg class="custom left_btn normal_icon">
+                <use href="src/Icons/sprite.svg#gb-sad" />
+              </svg>
+              <input type="range" class="slider" id="tilt" min="-60" max="60" value="0" />
+              <svg class="custom normal_icon">
+                <use href="src/Icons/sprite.svg#gb-angry" />
+              </svg>
+            </div>
+            <div class="eye-radius slider_card">
+              <svg class="custom left_btn normal_icon">
+                <use href="src/Icons/sprite.svg#gb-eye_small" />
+              </svg>
+              <input type="range" class="slider" id="eR" min="0" max="50" value="45" />
+              <svg class="custom normal_icon">
+                <use href="src/Icons/sprite.svg#gb-eye_large" />
+              </svg>
+            </div>
+            <div class="pupil-radius slider_card">
+              <svg class="custom left_btn normal_icon">
+                <use href="src/Icons/sprite.svg#gb-pupil_small" />
+              </svg>
+              <input type="range" class="slider" id="pR" min="0" max="52" value="30" />
+              <svg class="custom normal_icon">
+                <use href="src/Icons/sprite.svg#gb-base_emo" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="median_container"></div>
+      <div class="canvas_container">
+        <canvas
+          class="grobot_eyes"
+          width="320"
+          height="240"
+          id="canvas"
+        ></canvas>
+
+        <div class="export-zone">
+          <textarea class="input_field" id="codeOutput" rows="5"></textarea>
+          <div class="button_area">
+            <button class="task_button" onclick="resetEyes()">
+              <span class="material-symbols-outlined">restart_alt</span>
+              <span class="btn-text">Reset</span>
+            </button>
+            <button
+              class="task_button btn-active"
+              id="copy"
+              onclick="copyCode()"
+            >
+            <span class="material-symbols-outlined">content_copy</span>
+              <span class="btn-text">Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+    <!--  script file  -->
+    <script src="app.js"></script>
+  </body>
+</html>
