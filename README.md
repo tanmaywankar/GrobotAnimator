@@ -14,7 +14,7 @@ A web-based animation editor designed as a companion for the [Grobot_Animations]
 
 ---
 
-## 💻 Export Format
+## Export Format
 
 The animator outputs code formatted specifically for the `Grobot_Animations` library:
 

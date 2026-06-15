@@ -1,0 +1,208 @@
+/* ================= GLOBAL VARIABLES ================= */
+:root {
+  /* Exact Colors from Figma */
+  --bg-app: #1c1f26;          /* Deepest background */
+  --bg-panel: #252831;        /* Left slider panel & text box */
+  --bg-canvas: #000000;       /* Canvas interior */
+  --border-canvas: #2a2d36;   /* Thick border around canvas */
+  
+  --accent-blue: #376fd0;     /* Active tabs, Copy button, Slider fill */
+  --accent-blue-dim: #32415f; /* Inactive buttons, Inactive tabs */
+  --accent-green: #08ff5a;    /* Canvas eyes */
+  
+  --text-main: #ffffff;
+  --text-muted: #8490a5;
+  --text-code: #d1d5db;
+
+  /* Sizing Constraints */
+  --radius-xlg: 36px;
+  --radius-lg: 24px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.left-panel {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.tab {
+  background-color: var(--accent-blue-dim);
+  color: var(--text-main);
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.tab.active {
+  background-color: var(--accent-blue);
+}
+
+.slider-card {
+  background-color: var(--bg-panel);
+  border-radius: var(--radius-xlg);
+  padding: 24px;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.side-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sub-tab {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-app);
+  display: grid;
+  place-items: center;
+  color: var(--accent-blue);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sub-tab.active-sub {
+  background-color: var(--accent-blue-dim);
+}
+
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-placeholder {
+  width: 20px;
+  text-align: center;
+  color: var(--accent-blue);
+  font-weight: bold;
+}
+
+/* Customizing the Range Input to look like Figma */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--text-muted);
+  border-radius: 3px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e2e4e9;
+  cursor: pointer;
+}
+
+/* ================= RIGHT PANEL (480px wide) ================= */
+.right-panel {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Canvas Box */
+.canvas-container {
+  background-color: var(--bg-canvas);
+  border: 15px solid var(--border-canvas);
+  height: auto;
+  width: auto;
+  border-radius: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+canvas{
+  width: 400px;
+  height: 300px;
+  border-radius: 32px;
+}
+
+
+/* Code Output Box */
+.code-output {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--accent-blue-dim);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  height: 100px;
+  width: 85%;
+  max-width: 500px;
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--text-code);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.action-buttons {
+  display: flex;
+  width: 90%;
+  max-width: 500px;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 14px 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-blue-dim);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background-color: var(--accent-blue);
+}
