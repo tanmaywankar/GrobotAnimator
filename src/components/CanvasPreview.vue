@@ -13,7 +13,7 @@ const canvasRef = ref(null);
 
 const drawEye = (ctx, eY, eR, pR, lidH, botH, tilt, isLeft) => {
   const eyeGap = 20;
-  const eyeOffset = eR + eyeGap;
+  const eyeOffset = 65;
   
   let eyePosition;
   if (!isLeft) {
@@ -40,8 +40,8 @@ const drawEye = (ctx, eY, eR, pR, lidH, botH, tilt, isLeft) => {
   ctx.fillRect(eyePosition - eR, eY - eR - 3, 2 * eR, lidH);
 
   ctx.beginPath();
-  ctx.fillStyle = "#000000";
-  ctx.fillRect(eyePosition - eR, eY + eR + 2, 2 * eR, botH);
+  ctx.fillStyle = "#000";
+  ctx.fillRect(eyePosition - eR, eY + eR + 2, 2 * eR, -botH);
 
   // 4. Tilt Modifier
   let pointX;
@@ -64,7 +64,7 @@ const drawEye = (ctx, eY, eR, pR, lidH, botH, tilt, isLeft) => {
 };
 
 const renderFrame = () => {
-  if (!canvasRef.value) return; // Safety check if DOM isn't ready
+  if (!canvasRef.value) return;
   
   const ctx = canvasRef.value.getContext("2d");
 

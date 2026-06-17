@@ -24,7 +24,7 @@ export const useSliderStore = defineStore('SliderStore',() => {
         y: 0
     });
 
-    const activeEyeSide = ref("both");
+    const activeEyeSide = ref("Both");
 
     return{
         moodL,

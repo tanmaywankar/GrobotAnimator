@@ -1,31 +1,68 @@
 <template>
-    <div class="slider-row">
-        <svg :class="leftClasses">
-            <use :href="`/sprite.svg#${leftIconId}`" />
-        </svg>
-        <input type="range" :min="min" :max="max" />
-        <svg :class="rightClasses">
-            <use :href="`/sprite.svg#${rightIconId}`" />
-        </svg>
-    </div>
+  <div class="slider-row">
+    <svg :class="leftClasses">
+      <use :href="`/sprite.svg#${leftIconId}`" />
+    </svg>
+    <input type="range" :min="min" :max="max" v-model="currentValue" />
+    <svg :class="rightClasses">
+      <use :href="`/sprite.svg#${rightIconId}`" />
+    </svg>
+  </div>
 </template>
 
 <script setup>
+import { useSliderStore } from "../store/SliderStore";
+import { computed } from "vue";
+const store = useSliderStore();
 const props = defineProps({
   propKey: String,
   isGlobal: Boolean,
   min: Number,
   max: Number,
   defaultValue: Number,
-  leftIconId: String, 
-  rightIconId: String, 
-  leftClasses: String, 
-  rightClasses: String 
-})
+  leftIconId: String,
+  rightIconId: String,
+  leftClasses: String,
+  rightClasses: String,
+});
+
+const currentValue = computed({
+  get() {
+    const key = props.propKey;
+    if (props.isGlobal) {
+      return store.lookState[key];
+    } else {
+      if (store.activeEyeSide === "Left") {
+        return store.moodL[key];
+      } else if (store.activeEyeSide === "Right") {
+        return store.moodR[key];
+      } else if (store.activeEyeSide === "Both") {
+        return store.moodL[key];
+      }
+    }
+  },
+
+  set(newValue) {
+    const key = props.propKey;
+    const numericValue = Number(newValue);
+
+    if (props.isGlobal) {
+      store.lookState[key] = numericValue;
+    } else {
+      if (store.activeEyeSide === "Left") {
+        store.moodL[key] = numericValue;
+      } else if (store.activeEyeSide === "Right") {
+        store.moodR[key] = numericValue;
+      } else if (store.activeEyeSide === "Both") {
+        store.moodL[key] = numericValue;
+        store.moodR[key] = numericValue;
+      }
+    }
+  },
+});
 </script>
 
 <style scoped>
-
 .custom {
   color: #51b6f5;
   cursor: pointer;
