@@ -10,7 +10,7 @@ A web-based animation editor designed as a companion for the [Grobot_Animations]
 * **Hardware-Accurate Simulation:** Uses a 320x240 workspace to match the exact resolution of the Grobot display.
 * **Symmetry & Individual Control:** Toggle between editing the Left eye, Right eye, or Both simultaneously.
 * **Instant C++ Struct Generation:** Automatically generates `MoodData` structs ready to be pasted into your Arduino/ESP32 code.
-* **simple and easy:** easy for anyone to understand and use
+* **Simple and easy:** easy for anyone to understand and use
 
 ---
 
