@@ -2,7 +2,7 @@
 import "./style.css";
 import CanvasPreview from "./components/CanvasPreview.vue";
 import SliderComponent from "./components/SliderComponent.vue";
-import { sliderConfigs } from "./config/SliderConfig.js";
+import { sliderConfigs } from "./config/sliderConfig.js";
 import { useSliderStore } from "./store/SliderStore.js";
 import TextBoxComponent from "./components/TextBoxComponent.vue";
 
@@ -48,14 +48,7 @@ const store = useSliderStore();
       <div class="canvas-container">
         <CanvasPreview />
       </div>
-
       <TextBoxComponent/>
-
-      <div class="action-buttons">
-        <button class="btn">SEND</button>
-        <button class="btn">ADD</button>
-        <button class="btn primary">COPY</button>
-      </div>
     </div>
   </div>
 </template>
