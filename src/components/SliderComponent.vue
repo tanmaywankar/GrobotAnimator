@@ -1,10 +1,10 @@
 <template>
   <div class="slider-row">
-    <svg :class="leftClasses">
+    <svg :class="leftClasses" @click="adjustvalue(-1)">
       <use :href="`/sprite.svg#${leftIconId}`" />
     </svg>
     <input type="range" :min="min" :max="max" v-model="currentValue" />
-    <svg :class="rightClasses">
+    <svg :class="rightClasses" @click="adjustvalue(1)">
       <use :href="`/sprite.svg#${rightIconId}`" />
     </svg>
   </div>
@@ -60,11 +60,19 @@ const currentValue = computed({
     }
   },
 });
+
+const adjustvalue= (v) =>{
+const newValue = Number(currentValue.value) + v;
+if(newValue >= props.min && newValue <= props.max){
+  currentValue.value = newValue;
+}
+};
+
 </script>
 
 <style scoped>
 .custom {
-  color: #51b6f5;
+  color: var(--accent-blue);
   cursor: pointer;
   pointer-events: auto;
 }

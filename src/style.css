@@ -106,16 +106,25 @@ body {
 }
 .sub-tab svg {
   width: inherit;
+  transition: 0.3s;
+  filter: grayscale(1);
 }
 
 .sub-tab.active-sub {
-  background-color: var(--accent-blue-dim);
+  background-color: var(--bg-app);
+}
+.active-sub svg {
+  filter: grayscale(0);
 }
 
 .slider-row {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.slider-icon{
+    color: var(--accent-blue);
 }
 
 .icon-placeholder {
@@ -224,8 +233,11 @@ canvas {
   color: var(--accent-blue-dim);
 }
 
-.btn:active{
-    background-color: var(--accent-blue-dim);
-    color: var(--accent-blue);
+.btn:active {
+  background-color: var(--accent-blue-dim);
+  color: var(--accent-blue);
 }
 
+.eye_select {
+  height: 40px;
+}
