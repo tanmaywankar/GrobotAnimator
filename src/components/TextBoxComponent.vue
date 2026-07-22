@@ -1,9 +1,9 @@
 <template>
   <textarea class="code-output" id="text-area" :value="codeText"> </textarea>
   <div class="action-buttons">
-    <button class="btn" @click="resetValues">RESET</button>
-    <button class="btn">ADD</button>
-    <button class="btn primary">COPY</button>
+    <button class="btn" @click="resetValues">Reset</button>
+    <button class="btn">Add</button>
+    <button class="btn primary"  @click = "copyCode">Copy</button>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 import { computed } from "vue";
 import { useSliderStore } from "../store/SliderStore";
 import { sliderConfigs } from "../config/sliderConfig";
-
+import { toast } from 'vue3-toastify';
 const store = useSliderStore();
 
 const codeText = computed({
@@ -41,5 +41,20 @@ const resetValues = () => {
 
 const copyCode = () =>{
   const textArea = document.getElementById("text-area");
+  navigator.clipboard.writeText(textArea.value)
+  .then(() => {
+    toast.info("Code copied to clipboard!", {
+      autoClose: 3000,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      theme: "dark",
+    });
+  })
+  .catch(err =>{
+    console.error("Failed to copy text: ", err);
+    toast.error("Failed to copy code", {
+      autoClose: 2500,
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  });
 }
 </script>

@@ -25,16 +25,28 @@ const store = useSliderStore();
             :class="{ 'active-sub': store.activeEyeSide === 'Left' }"
             @click="store.activeEyeSide = 'Left'"
           >
-            Left
+            <svg class="eye_select">
+              <use href="/sprite.svg#gb-left_eye" />
+            </svg>
           </div>
-          <div class="sub-tab"
-          :class="{'active-sub': store.activeEyeSide === 'Both'}"
-          @click="store.activeEyeSide = 'Both'"
-          >Both</div>
-          <div class="sub-tab"
-          :class="{'active-sub': store.activeEyeSide === 'Right'}"
-          @click="store.activeEyeSide = 'Right'"
-          >Right</div>
+          <div
+            class="sub-tab"
+            :class="{ 'active-sub': store.activeEyeSide === 'Both' }"
+            @click="store.activeEyeSide = 'Both'"
+          >
+            <svg class = "eye_select">
+            <use href = "/sprite.svg#gb-base_emo" />
+           </svg>
+          </div>
+          <div
+            class="sub-tab"
+            :class="{ 'active-sub': store.activeEyeSide === 'Right' }"
+            @click="store.activeEyeSide = 'Right'"
+          >
+            <svg class="eye_select">
+              <use href="/sprite.svg#gb-right_eye" />
+            </svg>
+          </div>
         </div>
         <SliderComponent
           v-for="slider in sliderConfigs"
@@ -48,7 +60,7 @@ const store = useSliderStore();
       <div class="canvas-container">
         <CanvasPreview />
       </div>
-      <TextBoxComponent/>
+      <TextBoxComponent />
     </div>
   </div>
 </template>
