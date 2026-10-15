@@ -5,10 +5,6 @@
       <RotateCcw class="custom-icon" />
       Reset
     </button>
-    <button class="btn">
-      <Plus class="custom-icon"/>
-      Add
-    </button>
     <button class="btn primary" @click="copyCode">
       <Copy class="custom-icon" />
       Copy
@@ -21,7 +17,7 @@ import { computed } from "vue";
 import { useSliderStore } from "../store/SliderStore";
 import { sliderConfigs } from "../config/SliderConfig";
 import { toast } from "vue3-toastify";
-import { RotateCcw, Plus, Copy } from "@lucide/vue";
+import { RotateCcw, Copy } from "@lucide/vue";
 const store = useSliderStore();
 
 const codeText = computed({

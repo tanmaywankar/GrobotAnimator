@@ -13,12 +13,6 @@ const spriteUrl = `${import.meta.env.BASE_URL}sprite.svg`;
 <template>
   <div class="app-container">
     <div class="left-panel">
-      <div class="main-tabs">
-        <div class="tab active">Position</div>
-        <div class="tab">Presets</div>
-        <div class="tab">Colour</div>
-      </div>
-
       <div class="slider-card">
         <div class="side-tabs">
           <div
