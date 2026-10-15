@@ -1,11 +1,11 @@
 <template>
   <div class="slider-row">
     <svg :class="leftClasses" @click="adjustvalue(-1)">
-      <use :href="`/sprite.svg#${leftIconId}`" />
+      <use :href="`${spriteUrl}#${leftIconId}`" />
     </svg>
     <input type="range" :min="min" :max="max" v-model="currentValue" />
     <svg :class="rightClasses" @click="adjustvalue(1)">
-      <use :href="`/sprite.svg#${rightIconId}`" />
+      <use :href="`${spriteUrl}#${rightIconId}`" />
     </svg>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script setup>
 import { useSliderStore } from "../store/SliderStore";
 import { computed } from "vue";
+const spriteUrl = `${import.meta.env.BASE_URL}sprite.svg`;
 const store = useSliderStore();
 const props = defineProps({
   propKey: String,

@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { reactive } from "vue";
 import { ref } from "vue";
 import { computed } from "vue";
-import { sliderConfigs } from "../config/sliderConfig";
+import { sliderConfigs } from "../config/SliderConfig";
 
 export const useSliderStore = defineStore('SliderStore',() => {
     const moodL = reactive({

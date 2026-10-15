@@ -1,17 +1,27 @@
 <template>
   <textarea class="code-output" id="text-area" :value="codeText"> </textarea>
   <div class="action-buttons">
-    <button class="btn" @click="resetValues">Reset</button>
-    <button class="btn">Add</button>
-    <button class="btn primary"  @click = "copyCode">Copy</button>
+    <button class="btn" @click="resetValues">
+      <RotateCcw class="custom-icon" />
+      Reset
+    </button>
+    <button class="btn">
+      <Plus class="custom-icon"/>
+      Add
+    </button>
+    <button class="btn primary" @click="copyCode">
+      <Copy class="custom-icon" />
+      Copy
+    </button>
   </div>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useSliderStore } from "../store/SliderStore";
-import { sliderConfigs } from "../config/sliderConfig";
-import { toast } from 'vue3-toastify';
+import { sliderConfigs } from "../config/SliderConfig";
+import { toast } from "vue3-toastify";
+import { RotateCcw, Plus, Copy } from "@lucide/vue";
 const store = useSliderStore();
 
 const codeText = computed({
@@ -39,22 +49,23 @@ const resetValues = () => {
   }
 };
 
-const copyCode = () =>{
+const copyCode = () => {
   const textArea = document.getElementById("text-area");
-  navigator.clipboard.writeText(textArea.value)
-  .then(() => {
-    toast.info("Code copied to clipboard!", {
-      autoClose: 3000,
-      position: toast.POSITION.BOTTOM_RIGHT,
-      theme: "dark",
+  navigator.clipboard
+    .writeText(textArea.value)
+    .then(() => {
+      toast.info("Code copied to clipboard!", {
+        autoClose: 3000,
+        position: toast.POSITION.BOTTOM_RIGHT,
+        theme: "dark",
+      });
+    })
+    .catch((err) => {
+      console.error("Failed to copy text: ", err);
+      toast.error("Failed to copy code", {
+        autoClose: 2500,
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     });
-  })
-  .catch(err =>{
-    console.error("Failed to copy text: ", err);
-    toast.error("Failed to copy code", {
-      autoClose: 2500,
-      position: toast.POSITION.BOTTOM_RIGHT,
-    });
-  });
-}
+};
 </script>

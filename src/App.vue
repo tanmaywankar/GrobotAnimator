@@ -2,11 +2,12 @@
 import "./style.css";
 import CanvasPreview from "./components/CanvasPreview.vue";
 import SliderComponent from "./components/SliderComponent.vue";
-import { sliderConfigs } from "./config/sliderConfig.js";
+import { sliderConfigs } from "./config/SliderConfig.js";
 import { useSliderStore } from "./store/SliderStore.js";
 import TextBoxComponent from "./components/TextBoxComponent.vue";
 
 const store = useSliderStore();
+const spriteUrl = `${import.meta.env.BASE_URL}sprite.svg`;
 </script>
 
 <template>
@@ -26,7 +27,7 @@ const store = useSliderStore();
             @click="store.activeEyeSide = 'Left'"
           >
             <svg class="eye_select">
-              <use href="/sprite.svg#gb-left_eye" />
+              <use :href="`${spriteUrl}#gb-left_eye`" />
             </svg>
           </div>
           <div
@@ -35,7 +36,7 @@ const store = useSliderStore();
             @click="store.activeEyeSide = 'Both'"
           >
             <svg class = "eye_select">
-            <use href = "/sprite.svg#gb-base_emo" />
+            <use :href="`${spriteUrl}#gb-base_emo`" />
            </svg>
           </div>
           <div
@@ -44,7 +45,7 @@ const store = useSliderStore();
             @click="store.activeEyeSide = 'Right'"
           >
             <svg class="eye_select">
-              <use href="/sprite.svg#gb-right_eye" />
+              <use :href="`${spriteUrl}#gb-right_eye`" />
             </svg>
           </div>
         </div>
